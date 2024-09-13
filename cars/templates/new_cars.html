@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .form-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  }
+
+  .form-container h2 {
+    color: #eaeaea;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #444;
+    padding-bottom: 10px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    margin-bottom: 5px;
+    color: #eaeaea;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  .form-container input[type="text"],
+  .form-container input[type="file"],
+  .form-container select,
+  .form-container textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #2a2a2a;
+    color: #eaeaea;
+    border: 1px solid #555;
+    border-radius: 8px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+  .form-container input[type="text"]:focus,
+  .form-container input[type="file"]:focus,
+  .form-container select:focus,
+  .form-container textarea:focus {
+    outline: none;
+    border-color: #0096c7;
+    box-shadow: 0 0 8px rgba(0, 150, 199, 0.5);
+  }
+
+  .form-container input[type="file"] {
+    padding: 8px;
+    background-color: #2a2a2a;
+  }
+
+  .form-container input[type="submit"] {
+    background-color: #0096c7;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .form-container input[type="submit"]:hover {
+    background-color: #108eb8;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(16, 142, 184, 0.4);
+  }
+
+  .form-container input[type="submit"]:active {
+    background-color: #007a9e;
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 122, 158, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 20px;
+    }
+
+    .form-container h2 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<div class="form-container">
+  <h2>Cadastrar Novo Carro</h2>
+  <form method="post" action="{% url 'new_cars' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="brand">Marca:</label>
+      {{ form.brand }}
+    </div>
+    <div class="form-group">
+      <label for="model">Modelo:</label>
+      {{ form.model }}
+    </div>
+    <div class="form-group">
+      <label for="factory_year">Ano de Fabricação:</label>
+      {{ form.factory_year }}
+    </div>
+    <div class="form-group">
+      <label for="model_year">Ano do Modelo:</label>
+      {{ form.model_year }}
+    </div>
+    <div class="form-group">
+      <label for="plate">Placa:</label>
+      {{ form.plate }}
+    </div>
+    <div class="form-group">
+      <label for="value">Preço:</label>
+      {{ form.value }}
+    </div>
+    <div class="form-group">
+      <label for="photo">Foto:</label>
+      {{ form.photo }}
+    </div>
+    <div class="form-group">
+      <label for="photo">Bio:</label>
+      {{ form.bio }}
+    </div>
+    <input type="submit" value="Cadastrar">
+  </form>
+</div>
+{% endblock %}
